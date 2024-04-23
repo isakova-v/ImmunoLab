@@ -106,16 +106,16 @@ def main():
     count = (output['rank'] > 0).sum()
 
     def diagram():
-        common = count_freq/count
-        rare = 1 - common
+        common = count_freq
+        rare = count - common
+        labels = [common, rare]
         sizes = [common, rare]
-        labels = ['Common alleles', 'Rare alleles']
-        plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+        plt.pie(sizes, labels = labels, textprops={'fontsize': 25})
         plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         # Display the circle diagram
         diagram_path = 'diagrams/' + file_name + '_' + file_diag + '.png'
-        plt.title(file_name + '_' + file_diag)
         plt.savefig(diagram_path)
+
 
 
     if count != 0:
